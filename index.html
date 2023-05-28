@@ -2,6 +2,9 @@
 <html class="no-js" lang="en">
 <head>
     <style>
+        #image-container img {
+            width: 100%;
+        }
         .floatSymbol {
             position: fixed;
             bottom: 0;
@@ -94,7 +97,7 @@
                             <li><a href="#intro">一起旅行吧</a></li>
                             <li><a href="#events">恋爱♥日记</a></li>
                             <li><a href="#instagram">Instagram</a></li>
-                            <li><a href="#weibo">Weibo</a></li>
+                            <li><a href="#instagram">Weibo</a></li>
                             <li><a href="#eng-pics">照片墙</a></li>
                         </ul>
                         <ul class="member-actions">
@@ -137,9 +140,14 @@
         <div class="row">
             <div class="col-md-3 hidden-sm hidden-xs"><img src="img/CASSIE_LEFT.jpg" class="wp1"></div>
             <div class="col-md-6" id="citylist">
-                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="wenzhou.html" >Wenzhou, China, 2015</a></p>
-                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="wenzhou.html" >Jinhua, China, 2019</a></p>
-                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="wenzhou.html" >Hangzhou, China, 2020</a></p>
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="city/wenzhou.html" >Wenzhou, China, 2015</a></p>
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="city/jinhua.html" >Jinhua, China, 2019</a></p>
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="city/hangzhou.html" >Hangzhou, China, 2020</a></p>
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="city/shenzhen.html" >Shenzhen, China, 2020</a></p>
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="city/shanghai.html" >Shanghai, China, 2021</a></p>
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="city/london.html" >London, United Kindom, 2023</a></p>
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="city/leeds.html" >Leeds, United Kindom, 2023</a></p>
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="city/Bomingham.html" >Bomingham, United Kindom, 2023</a></p>
             </div>
             <div class="col-md-3 hidden-sm hidden-xs"><img src="img/CASSIE_RIGHT.jpg" class="wp2"></div>
         </div>
@@ -154,52 +162,30 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="header">Events</h3>
+                <h3 class="header">DIARIES</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
-                <div class="wp3">
-                    <p><strong>27th November</strong></p>
-
-                    <h5>Mehndi <span class="time">1PM - 5PM</span></h5>
-                    <p>It's one of the oldest traditional Indian pre wedding ceremony where the bride and groom
-                        attend the event together and a professional mehndi artist applies
-                        mehndi to the bride's hands and feet. This will be having a celebratory
-                        festival feel to it with people wearing vibrant clothes and dancing, singing, playing
-                        games and a lot more.</p>
-                </div>
-                <div class="wp5">
-                    <h5>Cocktail Night <span class="time">7PM - 12AM</span></h5>
-                    <p>This event is no way close to ethnic. The bride & groom would like to have some "shots before the
-                        knot". With booze flowing down the floor and the western attire on, everyone would be busy
-                        showing off their new moves on the stage which they have finely honed. Lastly, expect some beer
-                        pong matches & karaoke for sure.</p>
+                <div class="wp3" id="image-container">
+                    <p style="padding-bottom: 0%;"><strong>20th May</strong></p>
+                    <span class="time">12:00 AM</span>
+                    <p>520 宝宝我爱你<br><img src="img/520_ILOVEU.jpg" alt="Description of the image"></p>
+                    
                 </div>
             </div>
             <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
-                <div class="wp4">
-                    <p><strong>28th November</strong></p>
-
-                    <h5>Haldi <span class="time">10AM-11AM</span></h5>
-                    <p>The haldi ceremony is usually held separately for the bride and the groom. This one is for the
-                        bride. It is a low-key event that involves the application of turmeric paste on the hands, legs
-                        and face of the bride. The groom is not allowed to see the bride after this ritual until the
-                        final wedding ceremony starts.</p>
-                </div>
-                <div class="wp6">
-                    <h5>Wedding <span class="time">6PM-12AM</span></h5>
-                    <p>This is the main event in the entire wedding when the bride and the groom tie the
-                        knot. The groom comes with the barat and is greeted by the bride side with some dhol of course
-                        as maximum number of guests would be attending this event. This is when the couple circle the
-                        sacred fire and are finally declared husband and wife.</p>
+                <div class="wp4" id="image-container">
+                    <p style="padding-bottom: 0%;"><strong>18th Mar</strong></p>
+                    <span class="time">12:00 AM</span>
+                    <p>23<sup>th</sup> birthday<br><img src="img/ENGLAND_CASSIE.jpg" alt="Description of the image"></p>
                 </div>
             </div>
         </div>
         <div class="row section-padding">
             <div class="col-md-4 col-md-offset-4 text-center">
-                <a class="btn btn-accent btn-small" data-toggle="modal" data-target="#dc-modal">
-                    <i class="fa fa-barcode"></i>&nbsp;&nbsp;Dress code
+                <a class="btn btn-accent btn-small" id="blinkButton">
+                    ✨&nbsp;&nbsp;Blink blink
                 </a>
             </div>
         </div>
@@ -259,15 +245,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h3>A picture is worth a thousand words!</h3>
-                <p>Our foodprints are here → 
-                    <a href="https://instagram.com/explore/tags/ramandantara/" target="_blank">#ZsForever</a>
+                <h3>WITH YOU</h3>
+                <p>Our foodprints are here → <br>
+                    <a href="https://www.instagram.com/yours_uanx/" target="_blank">@ Sweeton_Cassie</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://weibo.com/u/2688535324?refer_flag=1005050010_" target = "_blank">@ yours_小苡姑姑</a>
                 </p>
             </div>
         </div>
         <div class="row section-border wp7">
             <div class="col-md-4 col-md-offset-4">
-                <img src="img/iphone_instagram.jpg">
+                <img src="img/WEIBO_CASSIE.jpg">
             </div>
         </div>
     </div>
@@ -277,7 +263,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h3 class="header">Engagement Pics</h3>
+                <h3 class="header">HIGHLIGHTS</h3>
             </div>
         </div>
         <div class="row">
@@ -287,7 +273,7 @@
                         <div class="overlay">
                             <i class="fa fa-search"></i>
                         </div>
-                        <img src="img/eng_pics/_RFX2942-sm.jpg" alt=""/>
+                        <img src="img/hlt_pics/hlt_5.jpg" alt=""/>
                     </div>
                 </a>
             </div>
@@ -297,7 +283,7 @@
                         <div class="overlay">
                             <i class="fa fa-search"></i>
                         </div>
-                        <img src="img/eng_pics/IMG_3483-sm.jpg" alt=""/>
+                        <img src="img/hlt_pics/hlt_2.jpg" alt=""/>
                     </div>
                 </a>
             </div>
@@ -307,7 +293,7 @@
                         <div class="overlay">
                             <i class="fa fa-search"></i>
                         </div>
-                        <img src="img/eng_pics/_RFX2992-sm.jpg" alt=""/>
+                        <img src="img/hlt_pics/hlt_6.png" alt=""/>
                     </div>
                 </a>
             </div>
@@ -317,7 +303,7 @@
                         <div class="overlay">
                             <i class="fa fa-search"></i>
                         </div>
-                        <img src="img/eng_pics/_RFX3064-sm.jpg" alt=""/>
+                        <img src="img/hlt_pics/hlt_1.png" alt=""/>
                     </div>
                 </a>
             </div>
@@ -327,7 +313,7 @@
                         <div class="overlay">
                             <i class="fa fa-search"></i>
                         </div>
-                        <img src="img/eng_pics/NGP_4089-sm.jpg" alt=""/>
+                        <img src="img/hlt_pics/hlt_3.jpg" alt=""/>
                     </div>
                 </a>
             </div>
@@ -337,7 +323,7 @@
                         <div class="overlay">
                             <i class="fa fa-search"></i>
                         </div>
-                        <img src="img/eng_pics/NGP_4119-sm.jpg" alt=""/>
+                        <img src="img/hlt_pics/hlt_4.jpg" alt=""/>
                     </div>
                 </a>
             </div>
@@ -407,6 +393,10 @@
     
             document.getElementById('balloonButton').addEventListener('click', function () {
                 generateRandomSymbols('🎈');
+            });
+
+            document.getElementById('blinkButton').addEventListener('click', function () {
+                generateRandomSymbols('✨');
             });
         </script>
     <script>
