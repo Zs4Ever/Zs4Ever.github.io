@@ -1,0 +1,94 @@
+/* General styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    /* Add background image */
+    background-image: url('background.jpg');
+    background-position: center center;
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    background-size: cover;
+    
+  }
+  
+  .calendar-container {
+    width: 100%;
+    width: 2200px;
+    padding: 2rem;
+    margin-top: 5px; /* Change this value to set the desired margin from the top */
+  }
+
+  
+  .calendar {
+    width: 100%;
+    border-collapse: collapse;
+
+  }
+  
+  /* Header styles */
+  .calendar th {
+    background-color: #6BFFD8;
+    /* opacity: 90%; */
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  /* Cell styles */
+  .calendar td {
+    border: 1px dotted rgba(0,0,0,0.6);
+    /* background-color: #ccc; */
+    background-color: rgba(255,255,255,0.8);
+    /* opacity: 90%; */
+    text-align: left;
+    padding-left: 2rem;
+    padding: 1rem;
+    vertical-align: top;
+    height: 150px;
+    width: 130px;
+  }
+  
+  .calendar .date {
+    font-weight: bold;
+    color: black;
+    
+    margin-bottom: 0.5rem;
+    opacity: 100%;
+  }
+  
+  .calendar .todo {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 100%;
+    color: black;
+    line-height: 1.5;
+  }
+  
+  .calendar .todo-item {
+    color: black;
+    margin-bottom: 0.5rem;
+  }
+  
+a {
+  color: blue;
+}
+
+a:visited {
+  color: blue;
+}
+
+audio {
+  width: 100px;
+  height: 20px;
+  margin-top: 5px;
+}
