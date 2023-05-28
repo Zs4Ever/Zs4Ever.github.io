@@ -2,22 +2,26 @@
 <html class="no-js" lang="en">
 <head>
     <style>
-        .heart {
+        .floatSymbol {
             position: fixed;
             bottom: 0;
-            font-size: 30px;
+            font-size: 20px;
             color: red;
-            animation: float 4s ease-in-out infinite;
-            opacity: 1;
+            animation: float 4s ease-in-out;
         }
-
+        #dateDifference {
+            font-size: 20px;
+            color: black;
+            text-align: center;
+            margin-top: 20px;
+        }
         @keyframes float {
             0% {
                 bottom: 0;
                 opacity: 1;
             }
             100% {
-                bottom: 100%;
+                bottom: 100vh;
                 opacity: 0;
             }
         }
@@ -94,7 +98,7 @@
                             <li><a href="#eng-pics">照片墙</a></li>
                         </ul>
                         <ul class="member-actions">
-                            <li><a href="#map" class="login">Venue</a></li>
+                            <li><a href="#map" class="login" id="balloonButton">BALLOON</a></li>
                             <li><a href="#rsvp" class="btn-white btn-small" id="loveButton">LOVE</a></li>
                         </ul>
                     </nav>
@@ -109,12 +113,15 @@
 </section>
 
 
-<section id="invitation" class="section-padding">
+<section id="invitation" class="section-padding" style="padding-bottom: 0%;">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h3>宝宝 一起旅行吧</h3>
-                <p>Zs Forever</p>
+                <h3>ZS FOREVER</h3>
+                <p id="dateDifference" style="font-size: 15px;
+                line-height: 29px;
+                color: rgba(28,54,83,.6);
+                padding-bottom: 0%;"></p>
             </div>
         </div>
     </div>
@@ -124,20 +131,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h3 class="header">我们走过的城市</h3>
+                <h3 class="header">一起走过的城市</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 hidden-sm hidden-xs"><img src="img/IMG_2317.jpg" class="wp1"></div>
-            <div class="col-md-6">
-                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="wenzhou.html" >1. Wenzhou, China</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="hangzhou.html" >2. Hangzhou, China</a></p>
-                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="wenzhou.html" >1. Wenzhou, China</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="hangzhou.html" >2. Hangzhou, China</a></p>
+            <div class="col-md-3 hidden-sm hidden-xs"><img src="img/CASSIE_LEFT.jpg" class="wp1"></div>
+            <div class="col-md-6" id="citylist">
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="wenzhou.html" >Wenzhou, China, 2015</a></p>
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="wenzhou.html" >Jinhua, China, 2019</a></p>
+                <p style="padding-bottom: 0%; padding-top: 0%;"><a href="wenzhou.html" >Hangzhou, China, 2020</a></p>
             </div>
-            <div class="col-md-3 hidden-sm hidden-xs"><img src="img/DSD_0214.jpg" class="wp2"></div>
+            <div class="col-md-3 hidden-sm hidden-xs"><img src="img/CASSIE_RIGHT.jpg" class="wp2"></div>
         </div>
         <div class="row">
-            <div class="col-sm-4 col-sm-push-2 col-xs-6 hidden-md hidden-lg"><img src="img/IMG_2317.jpg" class="wp8"></div>
-            <div class="col-sm-4 col-sm-push-2 col-xs-6 hidden-md hidden-lg"><img src="img/DSD_0214.jpg" class="wp9"></div>
+            <div class="col-sm-4 col-sm-push-2 col-xs-6 hidden-md hidden-lg"><img src="img/CASSIE_LEFT.jpg" class="wp8"></div>
+            <div class="col-sm-4 col-sm-push-2 col-xs-6 hidden-md hidden-lg"><img src="img/CASSIE_RIGHT.jpg" class="wp9"></div>
         </div>
     </div>
 </section>
@@ -373,18 +381,96 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlPw3GQYI3faa_9mRE6plWuM7xNEmrwH0&callback=initMap"></script>
         <script>
-            document.getElementById('loveButton').addEventListener('click', function () {
-                var heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.textContent = '♥';
-                heart.style.left = Math.random() * window.innerWidth + 'px';  // Position randomly in horizontal direction
-                document.body.appendChild(heart);
-        
-                // Remove the heart from DOM after 4 seconds (matching the animation duration)
+            function generateSymbol(symbol) {
+                var floatSymbol = document.createElement('div');
+                floatSymbol.className = 'floatSymbol';
+                floatSymbol.textContent = symbol;
+                floatSymbol.style.left = Math.random() * window.innerWidth + 'px';  // Position randomly in horizontal direction
+                document.body.appendChild(floatSymbol);
+    
+                // Remove the symbol from DOM after 4 seconds (matching the animation duration)
                 setTimeout(function () {
-                    document.body.removeChild(heart);
+                    document.body.removeChild(floatSymbol);
                 }, 4000);
+            }
+    
+            function generateRandomSymbols(symbol) {
+                var count = Math.floor(Math.random() * 3) + 1;  // Generates a random number between 1 and 3
+                for (var i = 0; i < count; i++) {
+                    generateSymbol(symbol);
+                }
+            }
+    
+            document.getElementById('loveButton').addEventListener('click', function () {
+                generateRandomSymbols('♥');
             });
+    
+            document.getElementById('balloonButton').addEventListener('click', function () {
+                generateRandomSymbols('🎈');
+            });
+        </script>
+    <script>
+        function updateTimeDifference() {
+            var startDate = new Date('2019-04-10');
+            var now = new Date();
+
+            var totalSeconds = Math.floor((now - startDate) / 1000);
+            var days = Math.floor(totalSeconds / (3600*24));
+            totalSeconds  %= 3600*24;
+            var hours = Math.floor(totalSeconds / 3600);
+            totalSeconds  %= 3600;
+            var minutes = Math.floor(totalSeconds / 60);
+            var seconds = totalSeconds % 60;
+
+            document.getElementById('dateDifference').innerHTML =
+                '已与你并肩走过 <strong>' + days + '</strong> 天 ' + 
+                '<strong>' + hours + ' </strong> 时 ' +
+                '<strong>' + minutes + ' </strong> 分 ' +
+                '<strong>' + seconds + '</strong> 秒';
+        }
+
+        // Display the time difference right away, then update it every second
+        updateTimeDifference();
+        setInterval(updateTimeDifference, 1000);
+    </script>
+
+<script>
+    // Generate a random RGB color
+    function getRandomColor() {
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+
+    // Make hovered color a bit lighter
+    function getHoverColor(color) {
+        var rgb = color.substring(4, color.length - 1).split(',');
+        var r = Math.min(parseInt(rgb[0]) + 50, 255);
+        var g = Math.min(parseInt(rgb[1]) + 50, 255);
+        var b = Math.min(parseInt(rgb[2]) + 50, 255);
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+
+    var paragraphs = document.getElementById('citylist').getElementsByTagName('p');
+    for (var i = 0; i < paragraphs.length; i++) {
+        var anchor = paragraphs[i].getElementsByTagName('a')[0];
+        var color = getRandomColor();
+        var hoverColor = getHoverColor(color);
+        anchor.style.color = color;
+
+        anchor.addEventListener('mouseover', function(color, hoverColor) {
+            return function(event) {
+                event.target.style.color = hoverColor;
+            };
+        }(color, hoverColor));
+
+        anchor.addEventListener('mouseout', function(color) {
+            return function(event) {
+                event.target.style.color = color;
+            };
+        }(color));
+    }
 </script>
 </body>
 </html>
