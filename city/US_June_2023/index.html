@@ -32,8 +32,15 @@
       vertical-align: middle;
       width: 14%;
     }
-    td.empty {
+    td.real_empty {
       border: none;
+    }
+    td.mobile {
+        display: none;
+      }
+    td.empty {
+      border: 1px solid #ddd;
+      padding: 10px;
     }
     .day_mark {
         background-color: #ddd;;
@@ -59,15 +66,25 @@
       .weekday {
         display: none;
       }
-    }
-    .mobile-header {
-      /* display: none; */
-      text-align: center;
+      td.empty {
+        display: none;
+      }
+      td.real_empty{
+        display:none;
+      }
     }
     @media (max-width: 600px) {
       .mobile-header {
         display: block;
+        text-align: center;
       }
+      td.desktop {
+        display: none;
+      }
+      td.mobile{
+        display: block;
+      }
+
     }
     a {
         color: blue;
@@ -89,9 +106,9 @@
     const startDate = new Date(2023, 5, 15);
     const endDate = new Date(2023, 6, 23);
     let currentDate = new Date(startDate.getTime());
-  
+
     const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  
+
     // Generate 6 distinct colors
     const generateColors = () => {
       const colors = [];
@@ -104,27 +121,27 @@
       }
       return colors;
     };
-  
+
     const colors = generateColors();
-  
+
     const tasks = {
       "2023-06-16": ["<a href=\"https://hollen0318.github.io/\" >link</a>", "Task Two"],
       "2023-06-17": ["Task Three"],
       "2023-06-18": ["Task Four", "Task Five", "Task Six"],
-      // Add more dates and tasks as needed
+      
     };
-  
+
     let html = '<tr class="weekday" ><td class="day_mark">Sun</td><td class="day_mark">Mon</td><td class="day_mark">Tue</td><td class="day_mark">Wed</td><td class="day_mark">Thu</td><td class="day_mark">Fri</td><td class="day_mark">Sat</td></tr>';
-  
+
     // Create empty cells for days before the start date
     for (let i = 0; i < startDate.getDay(); i++) {
-      html += '<td class="empty"></td>';
+      html += '<td class="real_empty"></td>';
     }
-  
+
     let colorIndex = 0;
     const totalDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
     const colorStep = Math.floor(totalDays / colors.length);
-  
+
     while(currentDate <= endDate) {
       if (currentDate.getDay() === 0 && currentDate !== startDate) {
         html += '</tr><tr>';
@@ -133,34 +150,38 @@
       const month = currentDate.getMonth() === 5 ? 'June' : 'July';
       const weekday = weekdays[currentDate.getDay()];
       const dateStr = `${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-  
+
       let taskHtml = '';
       if (tasks[dateStr]) {
         tasks[dateStr].forEach(task => {
           taskHtml += `<li>${task}</li>`;
         });
+
+        if (((currentDate - startDate) / (1000 * 60 * 60 * 24)) % colorStep === 0) {
+          colorIndex = (colorIndex + 1) % colors.length;
+        }
+        html += `<td class="desktop" data-day="${month} ${day}, ${weekday}" style="color: ${colors[colorIndex]}; font-weight: bold;">${day}<ul>${taskHtml}</ul></td>`;
+        html += `<td class="mobile" data-day="${month} ${day}, ${weekday}" style="color: ${colors[colorIndex]}; font-weight: bold;"></td><td class="mobile"  style="color: ${colors[colorIndex]}; font-weight: bold;"><ul>${taskHtml}</ul></td>`;
       } else {
-        taskHtml = "<li></li>";
+        if (((currentDate - startDate) / (1000 * 60 * 60 * 24)) % colorStep === 0) {
+          colorIndex = (colorIndex + 1) % colors.length;
+        }
+        html += `<td class="desktop" data-day="${month} ${day}, ${weekday}" style="color: ${colors[colorIndex]}; font-weight: bold;">${day}</td>`;
+        // html += `<td class="mobile" data-day="${month} ${day}, ${weekday}" style="color: ${colors[colorIndex]}; font-weight: bold;"></td>`;
+        // html += '<td class="empty">"${day}"</td>'; // Add an empty cell for the desktop view if no tasks
       }
-  
-      if (((currentDate - startDate) / (1000 * 60 * 60 * 24)) % colorStep === 0) {
-        colorIndex = (colorIndex + 1) % colors.length;
-      }
-      html += `<td data-day="${month} ${day}, ${weekday}" style="color: ${colors[colorIndex]}; font-weight: bold;"><ul>${taskHtml}</ul></td>`;
+
       currentDate.setDate(currentDate.getDate() + 1);
     }
-  
+
     // Create empty cells for days after the end date
     while (currentDate.getDay() !== 0) {
-      html += '<td class="empty"></td>';
+      html += '<td class="real_empty"></td>';
       currentDate.setDate(currentDate.getDate() + 1);
     }
     html += '</tr>';
     calendar.innerHTML += html;
   </script>
-  
-  
 
-  
 </body>
 </html>
