@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>US June & July 2023</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #fafafa;
+      font-family: Arial, sans-serif;
+    }
+    table {
+      border-collapse: collapse;
+      margin: auto;
+      width: 90%;
+    }
+    th {
+      text-align: center;
+      padding: 20px 0;
+      background: #ddd;
+      position: sticky;
+      top: 0;
+    }
+    td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+      vertical-align: middle;
+      width: 14%;
+    }
+    td.empty {
+      border: none;
+    }
+    .day_mark {
+        background-color: #ddd;;
+    }
+    @media (max-width: 600px) {
+      table, tbody, tr {
+        display: block;
+      }
+      td {
+        display: flex;
+        justify-content: space-between;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+      }
+      td:before {
+        content: attr(data-day);
+        font-weight: bold;
+        margin-right: 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      .weekday {
+        display: none;
+      }
+    }
+    .mobile-header {
+      /* display: none; */
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .mobile-header {
+        display: block;
+      }
+    }
+    a {
+        color: blue;
+    }
+    ul {
+    padding-right: 30px;
+    }
+    li {
+    margin-left: -10px;
+    }
+  </style>
+</head>
+<body>
+  <table id="calendar">
+      <th colspan="7" class="mobile-header">US June & July 2023</th>
+  </table>
+  <script>
+    const calendar = document.getElementById('calendar');
+    const startDate = new Date(2023, 5, 15);
+    const endDate = new Date(2023, 6, 23);
+    let currentDate = new Date(startDate.getTime());
+  
+    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  
+    // Generate 6 distinct colors
+    const generateColors = () => {
+      const colors = [];
+      for(let i = 0; i < 6; i++) {
+        let hue;
+        do {
+          hue = Math.floor(Math.random() * 360);
+        } while(colors.some(color => Math.abs(color - hue) < 60));
+        colors.push(`hsl(${hue}, 70%, 40%)`);
+      }
+      return colors;
+    };
+  
+    const colors = generateColors();
+  
+    const tasks = {
+      "2023-06-16": ["<a href=\"https://hollen0318.github.io/\" >link</a>", "Task Two"],
+      "2023-06-17": ["Task Three"],
+      "2023-06-18": ["Task Four", "Task Five", "Task Six"],
+      // Add more dates and tasks as needed
+    };
+  
+    let html = '<tr class="weekday" ><td class="day_mark">Sun</td><td class="day_mark">Mon</td><td class="day_mark">Tue</td><td class="day_mark">Wed</td><td class="day_mark">Thu</td><td class="day_mark">Fri</td><td class="day_mark">Sat</td></tr>';
+  
+    // Create empty cells for days before the start date
+    for (let i = 0; i < startDate.getDay(); i++) {
+      html += '<td class="empty"></td>';
+    }
+  
+    let colorIndex = 0;
+    const totalDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+    const colorStep = Math.floor(totalDays / colors.length);
+  
+    while(currentDate <= endDate) {
+      if (currentDate.getDay() === 0 && currentDate !== startDate) {
+        html += '</tr><tr>';
+      }
+      const day = currentDate.getDate();
+      const month = currentDate.getMonth() === 5 ? 'June' : 'July';
+      const weekday = weekdays[currentDate.getDay()];
+      const dateStr = `${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+  
+      let taskHtml = '';
+      if (tasks[dateStr]) {
+        tasks[dateStr].forEach(task => {
+          taskHtml += `<li>${task}</li>`;
+        });
+      } else {
+        taskHtml = "<li></li>";
+      }
+  
+      if (((currentDate - startDate) / (1000 * 60 * 60 * 24)) % colorStep === 0) {
+        colorIndex = (colorIndex + 1) % colors.length;
+      }
+      html += `<td data-day="${month} ${day}, ${weekday}" style="color: ${colors[colorIndex]}; font-weight: bold;"><ul>${taskHtml}</ul></td>`;
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+  
+    // Create empty cells for days after the end date
+    while (currentDate.getDay() !== 0) {
+      html += '<td class="empty"></td>';
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    html += '</tr>';
+    calendar.innerHTML += html;
+  </script>
+  
+  
+
+  
+</body>
+</html>
