@@ -75,7 +75,7 @@
         display: flex;
         justify-content: space-between;
         border: none;
-        border-bottom: 1px solid #ddd;
+        /* border-bottom: 1px solid #ddd; */
         width: 100%;
         font-size: 16px;
       }
@@ -213,7 +213,8 @@
       html += '<td class="real_empty"></td>';
       currentDate.setDate(currentDate.getDate() + 1);
     }
-    html += '<audio controls autoplay style=\"width: 100px; height: 20px; margin-top: 5px;\"><source src=\"black_key.mp3\"></audio></tr>';
+    // html += '<audio controls autoplay source src=\"black_key.mp3\"></audio></tr>';
+    html += '</tr>';
     calendar.innerHTML += html;
 // Get all <cd> elements
   var cdElements = document.querySelectorAll('td');
