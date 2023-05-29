@@ -2,7 +2,12 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
   <title>US June & July 2023</title>
+  <link rel="stylesheet" href="styles.css">
+  <title>宝宝，一起旅行吧</title>
+  <link rel="icon" href="candy.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="candy.ico" type="image/x-icon">
   <style>
     body {
       display: flex;
@@ -10,27 +15,44 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background: #fafafa;
+      background-image: url('background.jpg');
+      background-position: center center;
+      background-repeat: repeat-x;
+      background-attachment: fixed;
+      /* background-size: cover; */
       font-family: Arial, sans-serif;
     }
     table {
       border-collapse: collapse;
       margin: auto;
+      background-color: rgba(255, 255, 255, 0.6);
       width: 90%;
     }
     th {
       text-align: center;
       padding: 20px 0;
-      background: #ddd;
+      background: #4caf50;
+      color: white;
+    font-weight: bold;
       position: sticky;
       top: 0;
+    }
+    td.day_mark{
+      border: 1px solid #4caf50;
+      background-color: #4caf50;
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 16px;
     }
     td {
       border: 1px solid #ddd;
       padding: 10px;
       text-align: center;
       vertical-align: middle;
-      width: 14%;
+      font-size: 12px;
     }
     td.real_empty {
       border: none;
@@ -55,12 +77,19 @@
         border: none;
         border-bottom: 1px solid #ddd;
         width: 100%;
+        font-size: 16px;
       }
       td:before {
         content: attr(data-day);
         font-weight: bold;
         margin-right: 10px;
       }
+      td.day_mark{
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+    }
     }
     @media (max-width: 600px) {
       .weekday {
@@ -84,10 +113,6 @@
       td.mobile{
         display: block;
       }
-
-    }
-    a {
-        color: blue;
     }
     ul {
     padding-right: 30px;
@@ -104,15 +129,15 @@
   <script>
     const calendar = document.getElementById('calendar');
     const startDate = new Date(2023, 5, 15);
-    const endDate = new Date(2023, 6, 23);
+    const endDate = new Date(2023, 6, 24);
     let currentDate = new Date(startDate.getTime());
 
     const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    // Generate 6 distinct colors
+    // Generate X distinct colors
     const generateColors = () => {
       const colors = [];
-      for(let i = 0; i < 20; i++) {
+      for(let i = 0; i < 35; i++) {
         let hue;
         do {
           hue = Math.floor(Math.random() * 360);
@@ -125,9 +150,18 @@
     const colors = generateColors();
 
     const tasks = {
-      "2023-06-16": ["<a href=\"https://hollen0318.github.io/\" >link</a>", "Task Two"],
-      "2023-06-17": ["Task Three"],
-      "2023-06-18": ["Task Four", "Task Five", "Task Six"],
+      "2023-06-15": ["LON-RDU<br>10:05 AM - 1:35 PM<br><a href=\"LON~RDU.pdf\">American Airlines 173</a>"],
+      "2023-06-17": ["Wilminton 自驾游", "<a href=\"beach_reservation.pdf\">海滩位预约</a>", "<a href=\"Lunch_wilmington.pdf\">午餐预约</a>"],
+      "2023-06-23": ["RDU-IAD<br>10:40 AM - 11:46 AM<br><a href=\"RDU~DC.pdf\">United Airline 2163</a>", "<a href=\"Parking_DC.pdf\">停车预约</a>", "<a href=\"DC_June_2023.pdf\">酒店预约</a>"],
+      "2023-06-24": ["白宫", "GWU", "<a href=\"Parking_DC.pdf\">停车预约</a>", "<a href=\"Lunch_DC_2.pdf\">午饭预约 12:00 PM</a>", "IAD-RDU<br>10:00 PM - 11:07 PM<br><a href=\"RDU~DC.pdf\">United Airline 2634</a>"],
+      "2023-06-30": ["RDU>MIA<br>06:09 AM - 08:18 AM<br><a href=\"RDU>MIA.pdf\">American Airline 342</a>", "<a href=\"Parking_MIA.pdf\">停车预约</a>",  "<a href=\"MIA_July_2023.pdf\">酒店预约</a>", "<a href=\"Lunch_MIA.pdf\">午饭预约 12:00 PM</a>"],
+      "2023-07-02": ["MIA>RDU<br>08:25 PM - 10:46 PM<br><a href=\"MIA<RDU.pdf\">Delta Airline 2602</a>","<a href=\"Lunch_MIA.pdf\">午饭预约 12:00 PM</a>", "<a href=\"Parking_DC.pdf\">停车预约</a>"],
+      "2023-07-15": ["Charlotte 自驾游", "<a href=\"Lunch_charlotte.pdf\">午餐预约</a>"],
+      "2023-07-19": ["RDU-LAX<br>07:55 AM - 10:10 AM<br><a href=\"RDU>LAX.pdf\">Delta Airline 957</a>", "<a href=\"Parking_LA.pdf\">停车预约</a>", "<a href=\"Lunch_LA.pdf\">午餐预约</a>", "<a href=\"LosAngeles_Jul_2023.pdf\">酒店预约</a>"],
+      "2023-07-20": ["<a href=\"Universal_Studio.pdf\">环球影城</a>"],
+      "2023-07-22": ["LAX-SFO<br>01:52 PM - 03:28 PM<br><a href=\"LAX>SFO.pdf\">United Airline 2318</a>", "<a href=\"Dinner_SFO.pdf\">晚饭预约</a>"],
+      "2023-07-23": ["SFO-HKG<br>01:45 AM - 06:50 AM<sup>+1</sup><br><a href=\"SFO-Wenzhou.PNG\">Cathay Pacific 851</a>", "SFO-CLT<br>05:35 AM - 01:39 PM<br><a href=\"SFO<RDU.pdf\">American Airline 2798</a>", "CLT-RDU<br>02:35 PM - 03:32 PM<br><a href=\"SFO<RDU.pdf\">American Airline 2704</a>"],
+      "2023-07-24": ["HKG-WNZ<br>08:50 AM - 10:50 AM<br><a href=\"SFO-Wenzhou.PNG\">Cathay Pacific 384</a>"],
       
     };
 
@@ -181,6 +215,23 @@
     }
     html += '</tr>';
     calendar.innerHTML += html;
+// Get all <cd> elements
+  var cdElements = document.querySelectorAll('td');
+
+// Loop over all <cd> elements
+cdElements.forEach(function(cdElement) {
+    // Get color of the <cd> element
+    var cdColor = getComputedStyle(cdElement).color;
+
+    // Get all <a> elements within this <cd> element
+    var aElements = cdElement.querySelectorAll('a');
+
+    // Loop over all <a> elements and change their color to match the <cd> color
+    aElements.forEach(function(aElement) {
+        aElement.style.color = cdColor;
+    });
+});
+
   </script>
 
 </body>
