@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>UK 2023</title>
+  <link rel="stylesheet" href="styles.css">
+  <title>宝宝，一起旅行吧</title>
+  <link rel="icon" href="candy.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="candy.ico" type="image/x-icon">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url('background.jpg');
+      background-position: center center;
+      background-repeat: repeat-x;
+      background-attachment: fixed;
+      /* background-size: cover; */
+      font-family: Arial, sans-serif;
+    }
+    table {
+      border-collapse: collapse;
+      margin: auto;
+      background-color: rgba(255, 255, 255, 0.6);
+      width: 90%;
+    }
+    th {
+      text-align: center;
+      padding: 20px 0;
+      background: #3d8df5;
+      color: white;
+    font-weight: bold;
+      position: sticky;
+      top: 0;
+    }
+    td.day_mark{
+      border: 1px solid #3d8df5;
+      background-color: #3d8df5;
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 16px;
+    }
+    td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 12px;
+    }
+    td.real_empty {
+      border: none;
+    }
+    td.mobile {
+        display: none;
+      }
+    td.empty {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    .day_mark {
+        background-color: #ddd;;
+    }
+    @media (max-width: 600px) {
+      table, tbody, tr {
+        display: block;
+      }
+      td {
+        display: flex;
+        justify-content: space-between;
+        border: none;
+        /* border-bottom: 1px solid #ddd; */
+        width: 100%;
+        font-size: 16px;
+      }
+      td:before {
+        content: attr(data-day);
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      td.day_mark{
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    }
+    @media (max-width: 600px) {
+      .weekday {
+        display: none;
+      }
+      td.empty {
+        display: none;
+      }
+      td.real_empty{
+        display:none;
+      }
+    }
+    @media (max-width: 600px) {
+      .mobile-header {
+        display: block;
+        text-align: center;
+      }
+      td.desktop {
+        display: none;
+      }
+      td.mobile{
+        display: block;
+      }
+    }
+    ul {
+    padding-right: 30px;
+    }
+    li {
+    margin-left: -10px;
+    }
+  </style>
+</head>
+<body>
+  <table id="calendar">
+      <th colspan="7" class="mobile-header">与你の毕业</th>
+  </table>
+  <script>
+    const calendar = document.getElementById('calendar');
+    const startDate = new Date(2023, 11, 3);
+    const endDate = new Date(2023, 11, 20);
+    let currentDate = new Date(startDate.getTime());
+
+    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const totalDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+
+    // Generate X distinct colors
+    const generateColors = () => {
+      const colors = [];
+      for(let i = 0; i < totalDays; i++) {
+        let hue;
+        do {
+          hue = Math.floor(Math.random() * 360);
+        } while(colors.some(color => Math.abs(color - hue) < 60));
+        colors.push(`hsl(${hue}, 70%, 40%)`);
+      }
+      return colors;
+    };
+
+    const colors = generateColors();
+
+    const tasks = {
+      "2023-12-03": ["已经开始想你了哦"],
+      "2023-12-04": ["Zs @ UK"],
+      "2023-12-05": ["RDU-LHR<br>9:35 PM - 10:00 AM<sup>+1</sup><br><a href=\"RDU-LHR.png\">American Airline 174</a>"],
+      "2023-12-06": ["WNZ-PVG<br>9:05 AM - 10:15 AM<br><a href=\"WNZ-LHR.png\">上海航空 FM9528</a>", "PVG-LHR<br>1:30 PM - 5:30 PM<br><a href=\"WNZ-LHR.png\">上海航空 MU551</a>","<a href=\"https://maps.app.goo.gl/9cGYyimBThYfc2J89\">Zedwell Piccadilly Circus</a>"],
+      "2023-12-07": ["<a href=\"Cake_2023.jpg\">Yoyo Cake</a><br>3:00 PM - 5:00 PM"],
+      "2023-12-08": ["<a href=\"UK_Museum.pdf\">大英博物馆<br>3:30 PM - 4:30 PM</a>", "<a href=\"https://maps.app.goo.gl/yJZcsXaAqB1DwTnc8\">Hankki London China Town<br>5:30 PM - 6:30 PM</a>"],
+      "2023-12-09": ["出发利兹", "<a href=\"https://maps.app.goo.gl/UP5CAw4vRbARFeSK7\">Hilton Leeds City</a>"],
+      "2023-12-10": ["Leeds University"], 
+      "2023-12-11": ["毕业典礼<br>11:30 AM - 1:00 PM"],
+      "2023-12-12": ["出发曼切斯特", "<a href=\"https://maps.app.goo.gl/eywvmibkuxy87GeZ6\">Hyatt Place London Heathrow Airport</a>"],
+      "2023-12-13": ["LHR-RDU<br>2:45 PM - 6:40 PM<br><a href=\"LHR-RDU.png\">American Airline 173</a>", "LHR-PVG<br>5:15 PM - 12:45 PM<br><a href=\"LHR-WNZ.png\">东方航空 MU534</a>"],
+      "2023-12-14": ["RDU-ATL<br>5:00 AM - 6:30 AM<br><a href=\"RDU-MSY.png\">Delta Airlines 1453</a>", "PVG-WNZ<br>5:55 PM - 7:20 PM<br><a href=\"LHR-WNZ.png\">上海航空 FM9527</a>", "ATL-MSY<br>7:15 AM - 7:54 AM<br><a href=\"RDU-MSY.png\">Delta Airlines 2377</a>", "<a href=\"https://maps.app.goo.gl/JUToo9SBJ5ijeuYu8\">Cambria Hotel New Orleans</a>"],
+      "2023-12-15": ["<a href=\"https://nips.cc/\">NeurIPS 2023</a>"],
+      "2023-12-16": ["MSY-CLT<br>11:06 AM - 2:00 PM<br><a href=\"MSY-RDU.png\">American Airlines 1009</a>", "CLT-RDU<br>2:36 PM - 3:32 PM<br><a href=\"MSY-RDU.png\">American Airlines 2704</a>"],
+      "2023-12-17": ["思念你！"],
+    };
+
+    let html = '<tr class="weekday" ><td class="day_mark">Sun</td><td class="day_mark">Mon</td><td class="day_mark">Tue</td><td class="day_mark">Wed</td><td class="day_mark">Thu</td><td class="day_mark">Fri</td><td class="day_mark">Sat</td></tr>';
+
+    // Create empty cells for days before the start date
+    for (let i = 0; i < startDate.getDay(); i++) {
+      html += '<td class="real_empty"></td>';
+    }
+
+    let colorIndex = 0;
+    const colorStep = Math.floor(totalDays / colors.length);
+
+    while(currentDate <= endDate) {
+      if (currentDate.getDay() === 0 && currentDate !== startDate) {
+        html += '</tr><tr>';
+      }
+      const day = currentDate.getDate();
+      const month = currentDate.getMonth()+1;
+      const weekday = weekdays[currentDate.getDay()];
+      const dateStr = `${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+      let taskHtml = '';
+      if (tasks[dateStr]) {
+        tasks[dateStr].forEach(task => {
+          taskHtml += `<li>${task}</li>`;
+        });
+
+        if (((currentDate - startDate) / (1000 * 60 * 60 * 24)) % colorStep === 0) {
+          colorIndex = (colorIndex + 1) % colors.length;
+        }
+        html += `<td class="desktop" data-day="${month} ${day}, ${weekday}" style="color: ${colors[colorIndex]}; font-weight: bold;">${day}<ul>${taskHtml}</ul></td>`;
+        html += `<td class="mobile" data-day="${month} ${day}, ${weekday}" style="color: ${colors[colorIndex]}; font-weight: bold;"></td><td class="mobile"  style="color: ${colors[colorIndex]}; font-weight: bold;"><ul>${taskHtml}</ul></td>`;
+      } else {
+        if (((currentDate - startDate) / (1000 * 60 * 60 * 24)) % colorStep === 0) {
+          colorIndex = (colorIndex + 1) % colors.length;
+        }
+        html += `<td class="desktop" data-day="${month} ${day}, ${weekday}" style="color: ${colors[colorIndex]}; font-weight: bold;">${day}</td>`;
+        // html += `<td class="mobile" data-day="${month} ${day}, ${weekday}" style="color: ${colors[colorIndex]}; font-weight: bold;"></td>`;
+        // html += '<td class="empty">"${day}"</td>'; // Add an empty cell for the desktop view if no tasks
+      }
+
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    // Create empty cells for days after the end date
+    while (currentDate.getDay() !== 0) {
+      html += '<td class="real_empty"></td>';
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    html += '<audio controls autoplay source src=\"yuyandec.mp3\"></audio></tr>';
+    // html += '</tr>';
+    calendar.innerHTML += html;
+// Get all <cd> elements
+  var cdElements = document.querySelectorAll('td');
+
+// Loop over all <cd> elements
+cdElements.forEach(function(cdElement) {
+    // Get color of the <cd> element
+    var cdColor = getComputedStyle(cdElement).color;
+
+    // Get all <a> elements within this <cd> element
+    var aElements = cdElement.querySelectorAll('a');
+
+    // Loop over all <a> elements and change their color to match the <cd> color
+    aElements.forEach(function(aElement) {
+        aElement.style.color = cdColor;
+    });
+});
+
+  </script>
+
+</body>
+</html>
