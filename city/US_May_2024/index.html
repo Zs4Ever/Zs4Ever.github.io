@@ -128,7 +128,7 @@
   <script>
     const calendar = document.getElementById('calendar');
     const startDate = new Date(2024, 4, 5);
-    const endDate = new Date(2024, 4, 31);
+    const endDate = new Date(2024, 5, 6);
     let currentDate = new Date(startDate.getTime());
 
     const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -150,7 +150,28 @@
     const colors = generateColors();
 
     const tasks = {
-      "2024-05-09": ["罗马 FCO 直飞 华盛顿特区 IAD<br>3:45 PM - 7:20 PM<br>座位号 1A、1D<br>出发航站楼 T3<br><a href=\"FCO-IAD.png\">美国联合航空公司航班</a>", "<a href=\"0509.png\">喜来登瑞诗顿酒店<br>Sheraton Reston Hotel<br>11810 Sunrise Valley Dr, Reston, VA, 20191</a>"],
+      "2024-05-09": ["<a href=\"FCO-IAD.png\">✈️ 罗马 - 华盛顿特区 UA 127</a><br>15:40 PM - 19:20 PM<br>座位 1A 1D 航站楼 T3", "<a href=\"0509.png\">🏨 喜来登瑞诗顿酒店<br>Sheraton Reston Hotel</a><br>11810 Sunrise Valley Dr, Reston, VA, 20191"],
+      "2024-05-10": ["<a href=\"IAD-RDU.png\">✈️ 华盛顿特区 - 达勒姆 UA 1392</a><br>12:47 PM - 13:56 PM<br>座位 15A 15B", "<a href=\"https://freshimarket.com/\">华夏超市</a><br>12:47 PM - 13:56 PM<br>座位 15A 15B", "<a href=\"0510.png\">🏨 达勒姆市景万豪春季山丘套房酒店</a>"],
+      "2024-05-11": ["<a href=\"https://cs.duke.edu/events/2024commencement\">计算机科学学院毕业典礼</a><br>9:00 AM - 12:30 PM<br>注 8:00 AM 左右抵达", "<a href=\"0510.png\">🏨 达勒姆市景万豪春季山丘套房酒店</a>"],
+      "2024-05-12": ["<a href=\"https://www.streetsatsouthpoint.com/en/\">SouthPoint 逛街</a>", "<a href=\"https://www.asiankitchendurham.com/lander\">Asian Kitchen 晚饭</a>", "<a href=\"0510.png\">🏨 达勒姆市景万豪春季山丘套房酒店</a>"],
+      "2024-05-13": ["<a href=\"https://www.streetsatsouthpoint.com/en/\">正骨医生</a><br>13:45 PM - 15:00 PM", "<a href=\"https://www.hongkongdimsumindurham.com/index.html\">广式茶点 晚饭</a>", "<a href=\"0510.png\">🏨 达勒姆市景万豪春季山丘套房酒店</a>"],
+      "2024-05-14": ["靶场射击<br>10:00 AM - 12:00 PM", "That @ Main Street 晚饭", "<a href=\"0510.png\">🏨 达勒姆市景万豪春季山丘套房酒店</a>"],
+      "2024-05-15": ["<a href=\"RDU-LGA.png\">✈️ 达勒姆 - 纽约 AA 1414</a><br>15:40 PM - 19:20 PM<br>座位 22D 22E 22F", "<a href=\"0515.png\">🏨 纽约时代广场希尔顿天宝酒店</a>"],
+      "2024-05-16": ["待定", "<a href=\"0515.png\">🏨 纽约时代广场希尔顿天宝酒店</a>"],
+      "2024-05-17": ["待定", "<a href=\"0515.png\">🏨 纽约时代广场希尔顿天宝酒店</a>"],
+      "2024-05-18": ["待定", "<a href=\"0515.png\">🏨 纽约时代广场希尔顿天宝酒店</a>"],
+      "2024-05-19": ["<a href=\"LGA-RDU.png\">✈️ 纽约 - 达勒姆 FA 3313</a><br>6:00 AM - 7:42 AM<br>座位 3D 3E 3F", "<a href=\"0519.png\">🏨 AC 达勒姆酒店</a>"],
+      "2024-05-20": ["耳鼻喉科<br>11:00 AM - 12:00 PM", "听力测试<br>12:00 PM - 13:00 PM", "<a href=\"0519.png\">🏨 AC 达勒姆酒店</a>"],
+      "2024-05-21": ["博士口语考试<br>19:00 PM - 20:00 PM", "<a href=\"0519.png\">🏨 AC 达勒姆酒店</a>"],
+      "2024-05-22": ["耳鼻喉科<br>10:15 AM - 11:15 AM", "<a href=\"0519.png\">🏨 AC 达勒姆酒店</a>"],
+      "2024-05-23": ["<a href=\"RDU-LAS.png\">✈️ 达勒姆 - 拉斯维加斯 DL 0941</a><br>7:04 AM - 9:00 AM<br>座位 31A 31B 31C", "<a href=\"0523.png\">🏨 拉斯维加斯名胜世界康莱德酒店</a>"],
+      "2024-05-24": ["待定", "<a href=\"0523.png\">🏨 拉斯维加斯名胜世界康莱德酒店</a>"],
+      "2024-05-25": ["待定", "<a href=\"0523.png\">🏨 拉斯维加斯名胜世界康莱德酒店</a>"],
+      "2024-05-26": ["待定", "<a href=\"0523.png\">🏨 拉斯维加斯名胜世界康莱德酒店</a>"],
+      "2024-05-27": ["待定", "<a href=\"0523.png\">🏨 拉斯维加斯名胜世界康莱德酒店</a>"],
+      "2024-05-28": ["<a href=\"LAS-IAD.png\">✈️ 拉斯维加斯 - 华盛顿特区 UA 1961</a><br>13:15 PM - 20:52 PM<br>座位 27A 27B 27C", "<a href=\"0509.png\">🏨 喜来登瑞诗顿酒店<br>Sheraton Reston Hotel</a>"],
+      "2024-05-29": ["<a href=\"FCO-IAD.png\">✈️ 华盛顿特区 - 罗马 UA 884</a><br>17:40 PM - 8:15 AM<sup>+1</sup><br>座位 11D 11L 33G"],
+      "2024-06-04": ["<a href=\"FCO-IAD2.png\">✈️ 罗马 - 华盛顿特区 UA 127</a><br>15:40 PM - 19:50 PM<br>座位 32K"],
     };
 
     let html = '<tr class="weekday" ><td class="day_mark">Sun</td><td class="day_mark">Mon</td><td class="day_mark">Tue</td><td class="day_mark">Wed</td><td class="day_mark">Thu</td><td class="day_mark">Fri</td><td class="day_mark">Sat</td></tr>';
